@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>印尼朋友來訪・宜蘭海景山林 3 日行</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #059669;
+      --primary-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      --accent-blue: #0284c7;
+      --blue-gradient: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+      --accent-orange: #ea580c;
+      --orange-gradient: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      --bg-color: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-sub: #cbd5e1;
+      --tab-bg: rgba(15, 23, 42, 0.85);
+      --badge-bg: rgba(255, 255, 255, 0.06);
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.4);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.5;
+      min-height: 100vh;
+      padding-bottom: 110px;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(2, 132, 199, 0.15) 0px, transparent 50%);
+      background-attachment: fixed;
+    }
+
+    /* Top App Header */
+    .app-header {
+      padding: 28px 20px 18px;
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.7) 100%);
+      backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .header-title {
+      font-size: 1.45rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 4px;
+    }
+
+    .header-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+
+    /* Day Navigation Tabs */
+    .nav-tabs-wrapper {
+      position: sticky;
+      top: 98px;
+      z-index: 90;
+      background: var(--tab-bg);
+      backdrop-filter: blur(16px);
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding: 2px 0;
+    }
+
+    .nav-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      flex: 0 0 auto;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--card-border);
+      background: rgba(30, 41, 59, 0.6);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .tab-btn.active {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      border-color: rgba(52, 211, 153, 0.5);
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+      transform: translateY(-1px);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    /* Day View Sections */
+    .day-section {
+      display: none;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .day-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Day Summary Banner */
+    .day-summary-card {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .day-summary-info h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 3px;
+    }
+
+    .day-summary-info p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .day-summary-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(52, 211, 153, 0.25);
+    }
+
+    /* Timeline Structure */
+    .timeline {
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 15px;
+      bottom: 20px;
+      width: 2px;
+      background: linear-gradient(180deg, #10b981 0%, #0284c7 70%, rgba(255,255,255,0.05) 100%);
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 22px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -20px;
+      top: 16px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #0f172a;
+      border: 3px solid #10b981;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+      z-index: 2;
+    }
+
+    .timeline-item.highlight .timeline-dot {
+      border-color: #f97316;
+      box-shadow: 0 0 12px rgba(249, 115, 22, 0.8);
+    }
+
+    /* Location Card */
+    .location-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .location-card:active {
+      transform: scale(0.99);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .time-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(16, 185, 129, 0.12);
+      color: #34d399;
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 8px;
+      letter-spacing: 0.3px;
+    }
+
+    .category-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+    }
+
+    .location-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .location-title:hover {
+      color: #38bdf8;
+    }
+
+    .location-en {
+      font-size: 0.78rem;
+      color: #64748b;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .location-address {
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .location-address svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: #38bdf8;
+    }
+
+    /* Tags & Badges */
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .tag-success {
+      background: rgba(16, 185, 129, 0.18);
+      color: #34d399;
+      border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+
+    .tag-warning {
+      background: rgba(245, 158, 11, 0.18);
+      color: #fbbf24;
+      border: 1px solid rgba(251, 191, 36, 0.3);
+    }
+
+    .tag-info {
+      background: rgba(2, 132, 199, 0.18);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .tag-purple {
+      background: rgba(168, 85, 247, 0.18);
+      color: #c084fc;
+      border: 1px solid rgba(192, 132, 252, 0.3);
+    }
+
+    /* Card Notes / Highlights */
+    .card-notes {
+      background: rgba(15, 23, 42, 0.6);
+      border-left: 3px solid #10b981;
+      padding: 10px 12px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      margin-bottom: 16px;
+      line-height: 1.45;
+    }
+
+    .card-notes.warning {
+      border-left-color: #f59e0b;
+    }
+
+    .card-notes strong {
+      color: #ffffff;
+    }
+
+    /* Action Buttons Bar */
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-search {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .btn-search:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #38bdf8;
+    }
+
+    .btn-nav {
+      background: var(--blue-gradient);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+    }
+
+    .btn-nav:hover {
+      box-shadow: 0 6px 16px rgba(2, 132, 199, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .btn-nav.highlight {
+      background: var(--orange-gradient);
+      box-shadow: 0 4px 12px rgba(234, 88, 12, 0.35);
+    }
+
+    /* Practical Info Tab Styling */
+    .info-group {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    .info-group-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.88rem;
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .info-val {
+      color: #ffffff;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .phone-link {
+      color: #38bdf8;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Floating Action Bar at Bottom */
+    .floating-bar {
+      position: fixed;
+      bottom: 20px;
+      left: 16px;
+      right: 16px;
+      max-width: 568px;
+      margin: 0 auto;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-lg);
+      z-index: 100;
+    }
+
+    .float-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-decoration: none;
+      color: #ffffff;
+      transition: all 0.2s;
+    }
+
+    .float-homestay {
+      background: var(--primary-gradient);
+      box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+      margin-right: 8px;
+    }
+
+    .float-call {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100px);
+      background: rgba(16, 185, 129, 0.95);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      box-shadow: var(--shadow-lg);
+      z-index: 1000;
+      transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toast -->
+  <div id="toast" class="toast">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    <span id="toast-msg">已開啟 Google 導航</span>
+  </div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-badge">🌴 2026 宜蘭海景山林遊</div>
+    <h1 class="header-title">印尼朋友來訪・3 日行程手冊</h1>
+    <div class="header-subtitle">
+      <span>🗓️ 2026.09.14 (一) - 09.16 (三)</span>
+      <span>•</span>
+      <span>👥 約 16-20 人</span>
+    </div>
+  </header>
+
+  <!-- Sticky Nav Tabs -->
+  <div class="nav-tabs-wrapper">
+    <div class="nav-tabs">
+      <button class="tab-btn active" onclick="switchDay('day1')">
+        <span>Day 1 (9/14)</span>
+      </button>
+      <button class="tab-btn" onclick="switchDay('day2')">
+        <span>Day 2 (9/15)</span>
+      </button>
+      <button class="tab-btn" onclick="switchDay('day3')">
+        <span>Day 3 (9/16)</span>
+      </button>
+      <button class="tab-btn" onclick="switchDay('info')">
+        <span>ℹ️ 實用資訊</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Content Container -->
+  <main class="container">
+
+    <!-- ================= DAY 1 ================= -->
+    <section id="day1" class="day-section active">
+      <div class="day-summary-card">
+        <div class="day-summary-info">
+          <h2>Day 1｜啟程抵達 ＆ 夜景星空</h2>
+          <p>桃園出發 ➔ 宜蘭三星包棟 ➔ 員山夜景咖啡</p>
+        </div>
+        <span class="day-summary-tag">9/14 週一</span>
+      </div>
+
+      <div class="timeline">
+
+        <!-- D1-1 出發 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="location-card">
+            <div class="card-top">
+              <span class="time-badge">🚗 13:00 - 15:00</span>
+              <span class="category-badge">交通移動</span>
+            </div>
+            <div class="location-title" onclick="openSearch('國道五號 雪山隧道 路況')">
+              桃園出發 ➔ 宜蘭三星
+            </div>
+            <div class="location-en">Taoyuan to Sanxing, Yilan</div>
+            <div class="location-address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+              走國 2 轉國 3 ➔ 國 5 經雪山隧道（車程約 1.5-2 小時）
+            </div>
+            <div class="card-tags">
+              <span class="tag tag-info">自行開車分批</span>
+              <span class="tag tag-warning">車隊保持聯絡</span>
+            </div>
+            <div class="card-notes">
+              <strong>💡 移動提醒：</strong>分批前往，出發前各車確認油量，建議走國 5，不建議走北橫台 7 線山路。
+            </div>
+            <div class="card-actions">
+              <a href="javascript:void(0)" onclick="openSearch('國道五號 即時路況')" class="btn btn-search">
+                🔍 查路況
+              </a>
+              <a href="javascript:void(0)" onclick="openNav('宜蘭縣三星鄉行健一路一段106號')" class="btn btn-nav">
+                🧭 導航至民宿
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- D1-2 民宿入住 -->
+        <div class="timeline-item highlight">
+          <div class="timeline-dot"></div>
+          <div class="location-card">
+            <div class="card-top">
+              <span class="time-badge">🏠 15:00</span>
+              <span class="category-badge">住宿 Check-in</span>
+            </div>
+            <div class="location-title" onclick="openSearch('宜蘭縣三星鄉行健一路一段106號')">
+              三星包棟民宿（自助入住）
+            </div>
+            <div class="location-en">Sanxing Private Homestay</div>
+            <div class="location-address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+              宜蘭縣三星鄉行健一路一段106號
+            </div>
+            <div class="card-tags">
+              <span class="tag tag-success">✅ 已確認訂房</span>
+              <span class="tag tag-info">林怡秀 0975-264-309</span>
+              <span class="tag tag-purple">附烤肉設備</span>
+            </div>
+            <div class="card-notes">
+              <strong>🔑 入住須知：</strong>自助入住，打掃完大門不鎖，<strong>鑰匙掛在冰箱上</strong>；提供浴巾、牙刷、洗髮沐浴乳；尾款 2.5 萬元入住時轉帳。
+            </div>
+            <div class="card-actions">
+              <a href="javascript:void(0)" onclick="openSearch('宜蘭縣三星鄉行健一路一段106號')" class="btn btn-search">
+                🔍 查看周邊
+              </a>
+              <a href="javascript:void(0)" onclick="openNav('宜蘭縣三星鄉行健一路一段106號')" class="btn btn-nav highlight">
+                🧭 一鍵導航
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- D1-3 夜景咖啡 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="location-card">
+            <div class="card-top">
+              <span class="time-badge">☕ 17:30 - 20:30</span>
+              <span class="category-badge">晚餐 ＆ 賞景</span>
+            </div>
+            <div class="location-title" onclick="openSearch('地中海CasA 星空2館 宜蘭')">
+              地中海CasA 星空2館（原兔子迷宮）
+            </div>
+            <div class="location-en">Mediterranean CasA Starry Sky Cafe</div>
+            <div class="location-address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+              宜蘭縣員山鄉枕山一村15號（03-922-9575）
+            </div>
+            <div class="card-tags">
+              <span class="tag tag-info">宜蘭最大夜景</span>
+              <span class="tag tag-success">遠眺龜山島</span>
+              <span class="tag tag-purple">親子友善</span>
+            </div>
+            <div class="card-notes">
+              <strong>✨ 景點亮點：</strong>距民宿約 25 分鐘車程，白天看蘭陽平原與龜山島，入夜欣賞絕美百萬夜景，現場供應晚餐與飲品。
+            </div>
+            <div class="card-actions">
+              <a href="javascript:void(0)" onclick="openSearch('地中海CasA 星空2館 菜單 營業時間')" class="btn btn-search">
+                🔍 菜單與照片
+              </a>
+              <a href="javascript:void(0)" onclick="openNav('地中海CasA 星空2館')" class="btn btn-nav">
+                🧭 一鍵導航
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================= DAY 2 ================= -->
+    <section id="day2" class="day-section">
+      <div class="day-summary-card">
+        <div class="day-summary-info">
+          <h2>Day 2｜太平山芬多精 ＆ 農村拔蔥 ＆ 烤肉</h2>
+          <p>蹦蹦車 ➔ 見晴懷古步道 ➔ 拔蔥DIY ➔ 民宿烤肉</p>
+        </div>
+        <span class="day-summary-tag">9/15 週二</span>
+      </div>
+
+      <div class="timeline">
+
+        <!-- D2-1 出發 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="location-card">
+            <div class="card-top">
+              <span class="time-badge">⏰ 06:30 - 08:00</span>
+              <span class="category-badge">晨間出發</span>
+            </div>
+            <div class="location-title" onclick="openSearch('太平山國家森林遊樂區 入園資訊')">
+              三星民宿 ➔ 太平山森林遊樂區
+            </div>
+            <div class="location-en">Departure to Taipingshan</div>
+            <div class="location-address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+              宜蘭縣大同鄉太平巷58-1號（車程約 1.5 小時）
+            </div>
+            <div class="card-tags">
+              <span class="tag tag-warning">早出發避開起霧</span>
+              <span class="tag tag-info">大同加油站最後補油</span>
+            </div>
+            <div class="card-notes">
+              <strong>⚠️ 貼心提醒：</strong>山路彎多，請提早出發；長輩與小孩請帶<strong>保暖外套</strong>（山上溫度較平地低約 8-10 度）。
+            </div>
+            <div class="card-actions">
+              <a href="javascript:void(0)" onclick="openSearch('太平山 即時天氣 票價')" class="btn btn-search">
+                🔍 查山區天氣
+              </a>
+              <a href="javascript:void(0)" onclick="openNav('太平山國家森林遊樂區')" class="btn btn-nav">
+                🧭 導航至太平山
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- D2-2 蹦蹦車 -->
+        <div class="timeline-item highlight">
+          <div class="timeline-dot"></div>
+          <div class="location-card">
+            <div class="card-top">
+              <span class="time-badge">🚂 08:00 - 09:30</span>
+              <span class="category-badge">山林鐵道</span>
+            </div>
+            <div class="location-title" onclick="openSearch('太平山 蹦蹦車 時刻表 茂興步道')">
+              太平山 蹦蹦車（搭乘 08:30 班次）
+            </div>
+            <div class="location-en">Taipingshan Bong Bong Train</div>
+            <div class="location-address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+              太平山莊 蹦蹦車站（來回約 40 分鐘）
+            </div>
+            <div class="card-tags">
+              <span class="tag tag-success">老少咸宜</span>
+              <span class="tag tag-warning">每日僅8班現場排票</span>
+            </div>
+            <div class="card-notes">
+              <strong>🎫 購票攻略：</strong>08:00 抵達後立即至售票口排隊，20人建議分 2 批快速排隊購票，搭乘 08:30 班次往返茂興。
+            </div>
+            <div class="card-actions">
+              <a href="javascript:void(0)" onclick="openSearch('太平山 蹦蹦車 介紹')" class="btn btn-search">
+                🔍 蹦蹦車介紹
+              </a>
+              <a href="javascript:void(0)" onclick="openNav('太平山 蹦蹦車站')" class="btn btn-nav">
+                🧭 導航售票處
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- D2-3 見晴步道 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="location-card">
+            <div class="card-top">
+              <span class="time-badge">🌲 09:30 - 11:00</span>
+              <span class="category-badge">最美森林步道</span>
+            </div>
+            <div class="location-title" onclick="openSearch('見晴懷古步道 太平山')">
+              見晴懷古步道（全球最美28條小路）
+            </div>
+            <div class="location-en">Jiancing Historic Trail</div>
+            <div class="location-address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+              宜專一線 23.1K 處（全長 0.9 公里）
+            </div>
+            <div class="card-tags">
+              <span class="tag tag-success">平緩好走 50-60分</span>
+              <span class="tag tag-info">古老鐵道與檜木</span>
+            </div>
+            <div class="card-notes">
+              <strong>📸 拍照重點：</strong>舊鐵軌青苔、吊橋與雲海景觀，地勢平緩全齡皆宜，11:00 漫步完畢後直接啟程下山。
+            </div>
+            <div class="card-actions">
+              <a href="javascript:void(0)" onclick="openSearch('見晴懷古步道 美照 景點')" class="btn btn-search">
+                🔍 查看步道美照
+              </a>
+              <a href="javascript:void(0)" onclick="openNav('見晴懷古步道')" class="btn btn-nav">
+                🧭 一鍵導航
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- D2-4 午餐 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="location-card">
+            <div class="card-top">
+              <span class="time-badge">🥢 12:00 - 13:30</span>
+              <span class="category-badge">三星在地午餐</span>
+            </div>
+            <div class="location-title" onclick="openSearch('味珍香卜肉店 三星')">
+              味珍香卜肉店 ＆ 周邊小吃
+            </div>
+            <div class="location-en">Wei-Zhen-Xiang Pork & Local Food</div>
+            <div class="location-address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+              宜蘭縣三星鄉三星路七段305號
+            </div>
+            <div class="card-tags">
+              <span class="tag tag-success">80年老字號</span>
+              <span class="tag tag-info">三星蔥油餅</span>
+            </div>
+            <div class="card-notes">
+              <strong>😋 美食推薦：</strong>下山後直奔三星老街，品嚐金黃酥脆的炸卜肉與香濃三星蔥油餅，補充上午體力！
+            </div>
+            <div class="card-actions">
+              <a href="javascript:void(0)" onclick="openSearch('味珍香卜肉店 菜單 必點')" class="btn btn-search">
+                🔍 招牌菜色
+              </a>
+              <a href="javascript:void(0)" onclick="openNav('味珍香卜肉店')" class="btn btn-nav">
+                🧭 一鍵導航
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- D2-5 下午初咪拔蔥 -->
+        <div class="timeline-item highlight">
+          <div class="timeline-dot"></div>
+          <div class="location-card">
+            <div class="card-top">
+              <span class="time-badge">🌱 13:30 - 16:00</span>
+              <span class="category-badge">台灣農村體驗</span>
+            </div>
+            <div class="location-title" onclick="openSearch('初咪體驗農場 三星拔蔥')">
+              初咪體驗農場（拔蔥＋抓泥鰍＋做蔥麵包）
+            </div>
+            <div class="location-en">Chu-Mi Farm (Green Onion DIY)</div>
+            <div class="location-address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+              宜蘭縣三星鄉東興路13號（散客免預約）
+            </div>
+            <div class="card-tags">
+              <span class="tag tag-success">印尼朋友首選體驗</span>
+              <span class="tag tag-purple">親子熱門</span>
+              <span class="tag tag-info">約 90 分鐘</span>
+            </div>
+            <div class="card-notes">
+              <strong>🧑‍🌾 推薦玩法：</strong>換上雨鞋、戴上斗笠親自下田拔三星蔥、洗蔥，並動手 DIY 蔥麵包現烤現吃！
+            </div>
+            <div class="card-actions">
+              <a href="javascript:void(0)" onclick="openSearch('初咪體驗農場 介紹 門票')" class="btn btn-search">
+                🔍 農場介紹
+              </a>
+              <a href="javascript:void(0)" onclick="openNav('初咪體驗農場')" class="btn btn-nav highlight">
+                🧭 一鍵導航
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- D2-6 烤肉採買與晚餐 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="location-card">
+            <div class="card-top">
+              <span class="time-badge">🥩 16:30 - 晚上</span>
+              <span class="category-badge">採買 ＆ 烤肉聚會</span>
+            </div>
+            <div class="location-title" onclick="openSearch('全聯福利中心 宜蘭三星店')">
+              全聯三星店採買 ➔ 民宿烤肉聚會
+            </div>
+            <div class="location-en">BBQ Party at Homestay</div>
+            <div class="location-address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+              全聯三星店（三星路五段20號）➔ 回三星民宿
+            </div>
+            <div class="card-tags">
+              <span class="tag tag-success">民宿已招待烤肉清潔費</span>
+              <span class="tag tag-info">大團聚放鬆</span>
+            </div>
+            <div class="card-notes">
+              <strong>🍻 歡聚之夜：</strong>民宿附烤肉架與場地，大家一起烤肉、聊天品嚐台灣水果與在地佳釀。
+            </div>
+            <div class="card-actions">
+              <a href="javascript:void(0)" onclick="openSearch('全聯 宜蘭三星店 營業時間')" class="btn btn-search">
+                🔍 查全聯位置
+              </a>
+              <a href="javascript:void(0)" onclick="openNav('全聯福利中心Pxmart 宜蘭三星店')" class="btn btn-nav">
+                🧭 導航至全聯
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================= DAY 3 ================= -->
+    <section id="day3" class="day-section">
+      <div class="day-summary-card">
+        <div class="day-summary-info">
+          <h2>Day 3｜深澳海景鐵道 ＆ 望海巷石頭火鍋</h2>
+          <p>深澳自行車 ➔ 跨海橋 ➔ 石頭火鍋 ➔ 潮境公園</p>
+        </div>
+        <span class="day-summary-tag">9/16 週三</span>
+      </div>
+
+      <div class="timeline">
+
+        <!-- D3-1 退房與出發 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="location-card">
+            <div class="card-top">
+              <span class="time-badge">🚙 10:00 - 11:30</span>
+              <span class="category-badge">退房出發</span>
+            </div>
+            <div class="location-title" onclick="openSearch('基隆八斗子 深澳鐵道自行車')">
+              三星民宿退房 ➔ 基隆八斗子
+            </div>
+            <div class="location-en">Sanxing to Badouzi Station</div>
+            <div class="location-address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+              走國 5 接台 62 快速道路（車程約 1 小時 15 分～1.5 小時）
+            </div>
+            <div class="card-tags">
+              <span class="tag tag-warning">10:00 提早退房</span>
+              <span class="tag tag-info">約 11:30 抵達八斗子</span>
+            </div>
+            <div class="card-notes">
+              <strong>🚗 交通指引：</strong>提早出發避開車潮，直達八斗子車站停車場集合，準備參加 12:00 自行車。
+            </div>
+            <div class="card-actions">
+              <a href="javascript:void(0)" onclick="openSearch('八斗子車站 停車場')" class="btn btn-search">
+                🔍 停車資訊
+              </a>
+              <a href="javascript:void(0)" onclick="openNav('深澳鐵道自行車 八斗子站')" class="btn btn-nav">
+                🧭 導航八斗子站
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- D3-2 深澳自行車 -->
+        <div class="timeline-item highlight">
+          <div class="timeline-dot"></div>
+          <div class="location-card">
+            <div class="card-top">
+              <span class="time-badge">🚲 11:45 - 12:50</span>
+              <span class="category-badge">海景鐵道自行車</span>
+            </div>
+            <div class="location-title" onclick="openSearch('深澳鐵道自行車 八斗子站')">
+              深澳鐵道自行車（來回騎乘）
+            </div>
+            <div class="location-en">Shen'ao Rail Bike (Badouzi Round Trip)</div>
+            <div class="location-address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+              新北市瑞芳區建基路二段121號（八斗子站）
+            </div>
+            <div class="card-tags">
+              <span class="tag tag-success">12:00 八斗子發車</span>
+              <span class="tag tag-info">12:30 深澳回程</span>
+              <span class="tag tag-warning">發車前15分報到</span>
+            </div>
+            <div class="card-notes warning">
+              <strong>⚠️ 重要乘車規則：</strong>
+              <br>• 11:45 前需完成全團報到手續。
+              <br>• 須滿 3 足歲或身高滿 90cm 方可搭乘；未滿者可由家人在潮境公園草地陪玩。
+            </div>
+            <div class="card-actions">
+              <a href="javascript:void(0)" onclick="openSearch('深澳鐵道自行車 介紹 路線')" class="btn btn-search">
+                🔍 乘車介紹
+              </a>
+              <a href="javascript:void(0)" onclick="openNav('深澳鐵道自行車 八斗子站')" class="btn btn-nav highlight">
+                🧭 一鍵導航
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- D3-3 跨海橋與休息 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="location-card">
+            <div class="card-top">
+              <span class="time-badge">🌊 12:50 - 13:30</span>
+              <span class="category-badge">海風散步</span>
+            </div>
+            <div class="location-title" onclick="openSearch('望海巷跨海景觀橋 基隆')">
+              望海巷跨海景觀橋
+            </div>
+            <div class="location-en">Wanghaixiang Cross-Sea Bridge</div>
+            <div class="location-address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+              基隆市中正區望海巷漁港（距火鍋店步行 2 分鐘）
+            </div>
+            <div class="card-tags">
+              <span class="tag tag-info">360度無敵海景</span>
+              <span class="tag tag-success">平坦好走</span>
+            </div>
+            <div class="card-notes">
+              <strong>📸 拍照看海：</strong>回到八斗子後，漫步至跨海景觀橋吹海風、眺望山海美景，從容步行至火鍋店入座。
+            </div>
+            <div class="card-actions">
+              <a href="javascript:void(0)" onclick="openSearch('望海巷跨海景觀橋 拍照')" class="btn btn-search">
+                🔍 景觀橋美照
+              </a>
+              <a href="javascript:void(0)" onclick="openNav('望海巷跨海景觀橋')" class="btn btn-nav">
+                🧭 一鍵導航
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- D3-4 火鍋午餐 (已訂位) -->
+        <div class="timeline-item highlight">
+          <div class="timeline-dot"></div>
+          <div class="location-card">
+            <div class="card-top">
+              <span class="time-badge">🍲 13:30 - 15:00</span>
+              <span class="category-badge">午餐饗宴</span>
+            </div>
+            <div class="location-title" onclick="openSearch('望海巷石頭火鍋 二館 基隆')">
+              望海巷石頭火鍋 二館（已訂位）
+            </div>
+            <div class="location-en">Wanghaixiang Stone Hotpot No. 2</div>
+            <div class="location-address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+              基隆市中正區北寧路369巷50-1號
+            </div>
+            <div class="card-tags">
+              <span class="tag tag-success">✅ 已確認訂位 16大</span>
+              <span class="tag tag-info">訂位人：許小姐</span>
+              <span class="tag tag-purple">現炒爆香石頭鍋</span>
+            </div>
+            <div class="card-notes">
+              <strong>🔥 訂位明細：</strong>9/16（週三）13:30，16 大，現炒香氣十足的招牌石頭火鍋，運動完補充熱量最滿足！
+            </div>
+            <div class="card-actions">
+              <a href="javascript:void(0)" onclick="openSearch('望海巷石頭火鍋 二館 菜單 評價')" class="btn btn-search">
+                🔍 菜單與評價
+              </a>
+              <a href="javascript:void(0)" onclick="openNav('望海巷石頭火鍋 二館')" class="btn btn-nav highlight">
+                🧭 一鍵導航
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- D3-5 潮境公園 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="location-card">
+            <div class="card-top">
+              <span class="time-badge">🏝️ 15:00 - 16:00</span>
+              <span class="category-badge">海景公園散步</span>
+            </div>
+            <div class="location-title" onclick="openSearch('潮境公園 基隆 景點')">
+              潮境公園（遠眺基隆嶼）
+            </div>
+            <div class="location-en">Chaojing Park</div>
+            <div class="location-address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+              基隆市中正區北寧路369巷61號（火鍋店旁步行可達）
+            </div>
+            <div class="card-tags">
+              <span class="tag tag-success">免費入園</span>
+              <span class="tag tag-info">廣闊海景草地</span>
+            </div>
+            <div class="card-notes">
+              <strong>🌿 飯後漫步：</strong>火鍋後步行至潮境公園散步消食，遠眺海天一色的基隆嶼，為宜蘭海景山林之旅畫下完美句點。
+            </div>
+            <div class="card-actions">
+              <a href="javascript:void(0)" onclick="openSearch('潮境公園 景點 介紹')" class="btn btn-search">
+                🔍 公園介紹
+              </a>
+              <a href="javascript:void(0)" onclick="openNav('潮境公園')" class="btn btn-nav">
+                🧭 一鍵導航
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- D3-6 賦歸 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="location-card">
+            <div class="card-top">
+              <span class="time-badge">🚗 16:00 起</span>
+              <span class="category-badge">平安賦歸</span>
+            </div>
+            <div class="location-title" onclick="openSearch('基隆 桃園 國道一號 路況')">
+              八斗子 ➔ 返回桃園
+            </div>
+            <div class="location-en">Return to Taoyuan</div>
+            <div class="location-address">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+              走台 62 接國 1 / 國 2（車程約 1 - 1.5 小時）
+            </div>
+            <div class="card-tags">
+              <span class="tag tag-success">滿載回憶</span>
+            </div>
+            <div class="card-notes">
+              <strong>🏁 快樂返家：</strong>平安順利返回桃園，期待下次再相聚！
+            </div>
+            <div class="card-actions">
+              <a href="javascript:void(0)" onclick="openSearch('國道一號 即時路況')" class="btn btn-search">
+                🔍 國道路況
+              </a>
+              <a href="javascript:void(0)" onclick="openNav('桃園市')" class="btn btn-nav">
+                🧭 導航回桃園
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================= INFO TAB ================= -->
+    <section id="info" class="day-section">
+      <div class="day-summary-card">
+        <div class="day-summary-info">
+          <h2>實用資訊 ＆ 重要電話</h2>
+          <p>民宿住址、訂位電話與行前備忘錄</p>
+        </div>
+        <span class="day-summary-tag">聯絡指南</span>
+      </div>
+
+      <div class="info-group">
+        <div class="info-group-title">
+          <span>🏠 三星包棟民宿</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">地址</span>
+          <span class="info-val">宜蘭縣三星鄉行健一路一段106號</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">聯絡管家</span>
+          <span class="info-val">
+            <a href="tel:0975264309" class="phone-link">📞 林怡秀 0975-264-309</a>
+          </span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">入住／退房</span>
+          <span class="info-val">9/14 15:00 入住 ｜ 9/16 10:00 退房</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">鑰匙位置</span>
+          <span class="info-val">自助入住，大門不鎖，掛在冰箱上</span>
+        </div>
+        <div style="margin-top: 14px;">
+          <a href="javascript:void(0)" onclick="openNav('宜蘭縣三星鄉行健一路一段106號')" class="btn btn-nav" style="width:100%;">
+            🧭 導航直達民宿
+          </a>
+        </div>
+      </div>
+
+      <div class="info-group">
+        <div class="info-group-title">
+          <span>🍲 望海巷石頭火鍋 二館</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">訂位時間</span>
+          <span class="info-val">2026/09/16（週三）13:30</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">訂位人數</span>
+          <span class="info-val">16 位大人（訂位人：許小姐）</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">地址</span>
+          <span class="info-val">基隆市中正區北寧路369巷50-1號</span>
+        </div>
+        <div style="margin-top: 14px;">
+          <a href="javascript:void(0)" onclick="openNav('望海巷石頭火鍋 二館')" class="btn btn-nav highlight" style="width:100%;">
+            🧭 導航直達火鍋店
+          </a>
+        </div>
+      </div>
+
+      <div class="info-group">
+        <div class="info-group-title">
+          <span>🚲 深澳鐵道自行車</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">建議班次</span>
+          <span class="info-val">9/16 八斗子 12:00 ➔ 深澳 12:30 回程</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">客服電話</span>
+          <span class="info-val">
+            <a href="tel:0224062200" class="phone-link">📞 02-2406-2200</a>
+          </span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">乘車限制</span>
+          <span class="info-val">需滿 3 歲或 90cm；提早 15 分報到</span>
+        </div>
+      </div>
+
+      <div class="info-group">
+        <div class="info-group-title">
+          <span>🌲 太平山國家森林遊樂區</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">服務站電話</span>
+          <span class="info-val">
+            <a href="tel:039545114" class="phone-link">📞 03-954-5114</a>
+          </span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">蹦蹦車站電話</span>
+          <span class="info-val">
+            <a href="tel:039809812" class="phone-link">📞 03-980-9812</a>
+          </span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">衣物提醒</span>
+          <span class="info-val">山區氣溫較平地低約 8-10 度，務必備外套</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Floating Bar -->
+  <div class="floating-bar">
+    <a href="javascript:void(0)" onclick="openNav('宜蘭縣三星鄉行健一路一段106號')" class="float-btn float-homestay">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      導航回民宿
+    </a>
+    <a href="tel:0975264309" class="float-btn float-call">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      撥給民宿管家
+    </a>
+  </div>
+
+  <script>
+    // Tab Switching
+    function switchDay(dayId) {
+      document.querySelectorAll('.day-section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      
+      const targetSec = document.getElementById(dayId);
+      if (targetSec) targetSec.classList.add('active');
+
+      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(dayId));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Google Navigation Universal URL
+    function openNav(destination) {
+      showToast(`正在為您開啟「${destination}」導航...`);
+      const navUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}`;
+      window.open(navUrl, '_blank');
+    }
+
+    // Google Search Universal URL
+    function openSearch(query) {
+      showToast(`正在搜尋「${query}」...`);
+      const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+      window.open(searchUrl, '_blank');
+    }
+
+    // Toast Notification
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      if (toast && toastMsg) {
+        toastMsg.innerText = msg;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2200);
+      }
+    }
+  </script>
+</body>
+</html>

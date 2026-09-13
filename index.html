@@ -56,9 +56,7 @@
       padding: 28px 20px 18px;
       background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.7) 100%);
       backdrop-filter: blur(16px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: relative;
       border-bottom: 1px solid var(--card-border);
     }
 
@@ -100,7 +98,7 @@
     /* Day Navigation Tabs */
     .nav-tabs-wrapper {
       position: sticky;
-      top: var(--header-h, 98px);
+      top: 0;
       z-index: 90;
       background: var(--tab-bg);
       backdrop-filter: blur(16px);
@@ -1379,19 +1377,7 @@
         btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
       });
       try { localStorage.setItem('trip-lang', lang); } catch (e) {}
-      requestAnimationFrame(syncHeaderHeight);
     }
-
-    // Keep the sticky day-tabs bar aligned right under the header,
-    // whose height changes with title length / language / font scale.
-    function syncHeaderHeight() {
-      const header = document.querySelector('.app-header');
-      if (header) {
-        document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
-      }
-    }
-    window.addEventListener('resize', () => requestAnimationFrame(syncHeaderHeight));
-    window.addEventListener('load', () => requestAnimationFrame(syncHeaderHeight));
 
     (function initLang() {
       let saved = null;
@@ -1404,7 +1390,6 @@
       scale = Math.max(85, Math.min(170, scale));
       document.documentElement.style.fontSize = scale + '%';
       try { localStorage.setItem('trip-font-scale', String(scale)); } catch (e) {}
-      requestAnimationFrame(syncHeaderHeight);
     }
 
     function adjustFontSize(delta) {

@@ -558,24 +558,36 @@
     body[data-lang="zh"] .i18n-id { display: none; }
     body[data-lang="id"] .i18n-zh { display: none; }
 
-    .lang-switch {
+    .control-panel {
       position: absolute;
-      top: 26px;
-      right: 20px;
+      top: 20px;
+      right: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      z-index: 110;
+    }
+
+    .header-text {
+      padding-right: 112px;
+    }
+
+    .lang-switch,
+    .text-size-switch {
       display: flex;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid var(--card-border);
       border-radius: 999px;
       padding: 3px;
       gap: 2px;
-      z-index: 110;
     }
 
     .lang-btn {
       border: none;
       background: transparent;
       color: var(--text-muted);
-      font-size: 0.72rem;
+      font-size: 11.5px;
       font-weight: 800;
       padding: 5px 10px;
       border-radius: 999px;
@@ -587,6 +599,24 @@
       background: var(--primary-gradient);
       color: #ffffff;
       box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+    }
+
+    .text-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 12.5px;
+      font-weight: 800;
+      padding: 6px 11px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s;
+      line-height: 1;
+    }
+
+    .text-btn:active {
+      background: var(--blue-gradient);
+      color: #ffffff;
     }
   </style>
 </head>
@@ -600,22 +630,31 @@
 
   <!-- Header -->
   <header class="app-header" style="position: relative;">
-    <div class="lang-switch">
-      <button class="lang-btn active" data-lang-btn="zh" onclick="setLang('zh')">中文</button>
-      <button class="lang-btn" data-lang-btn="id" onclick="setLang('id')">ID</button>
+    <div class="control-panel">
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang-btn="zh" onclick="setLang('zh')">中文</button>
+        <button class="lang-btn" data-lang-btn="id" onclick="setLang('id')">ID</button>
+      </div>
+      <div class="text-size-switch">
+        <button class="text-btn" onclick="adjustFontSize(-15)" aria-label="縮小文字 Perkecil teks">A－</button>
+        <button class="text-btn" onclick="setFontScale(115)" aria-label="還原文字大小 Ukuran normal">Aa</button>
+        <button class="text-btn" onclick="adjustFontSize(15)" aria-label="放大文字 Perbesar teks">A＋</button>
+      </div>
     </div>
-    <div class="header-badge">
-      <span class="i18n-zh">🌴 2026 宜蘭海景山林遊</span>
-      <span class="i18n-id">🌴 Wisata Pantai &amp; Gunung Yilan 2026</span>
-    </div>
-    <h1 class="header-title">
-      <span class="i18n-zh">印尼親友相聚・3 日溫馨行程手冊</span>
-      <span class="i18n-id">Kumpul Bareng Kerabat Indonesia・Itinerary 3 Hari Penuh Kehangatan</span>
-    </h1>
-    <div class="header-subtitle">
-      <span><span class="i18n-zh">🗓️ 2026.09.14 (一) - 09.16 (三)</span><span class="i18n-id">🗓️ 14-16 Sep 2026 (Sen-Rab)</span></span>
-      <span>•</span>
-      <span><span class="i18n-zh">👥 約 16-20 人</span><span class="i18n-id">👥 Sekitar 16-20 orang</span></span>
+    <div class="header-text">
+      <div class="header-badge">
+        <span class="i18n-zh">🌴 2026 宜蘭海景山林遊</span>
+        <span class="i18n-id">🌴 Wisata Pantai &amp; Gunung Yilan 2026</span>
+      </div>
+      <h1 class="header-title">
+        <span class="i18n-zh">印尼親友相聚・3 日溫馨行程手冊</span>
+        <span class="i18n-id">Kumpul Bareng Kerabat Indonesia・Itinerary 3 Hari Penuh Kehangatan</span>
+      </h1>
+      <div class="header-subtitle">
+        <span><span class="i18n-zh">🗓️ 2026.09.14 (一) - 09.16 (三)</span><span class="i18n-id">🗓️ 14-16 Sep 2026 (Sen-Rab)</span></span>
+        <span>•</span>
+        <span><span class="i18n-zh">👥 約 16-20 人</span><span class="i18n-id">👥 Sekitar 16-20 orang</span></span>
+      </div>
     </div>
   </header>
 
@@ -1356,6 +1395,25 @@
       let saved = null;
       try { saved = localStorage.getItem('trip-lang'); } catch (e) {}
       if (saved === 'zh' || saved === 'id') setLang(saved);
+    })();
+
+    // Text Size Adjustment (elderly-friendly, default enlarged, user-adjustable)
+    function setFontScale(scale) {
+      scale = Math.max(85, Math.min(170, scale));
+      document.documentElement.style.fontSize = scale + '%';
+      try { localStorage.setItem('trip-font-scale', String(scale)); } catch (e) {}
+    }
+
+    function adjustFontSize(delta) {
+      const current = parseInt(document.documentElement.style.fontSize, 10) || 115;
+      setFontScale(current + delta);
+    }
+
+    (function initFontScale() {
+      let saved = null;
+      try { saved = localStorage.getItem('trip-font-scale'); } catch (e) {}
+      const scale = saved ? parseInt(saved, 10) : 115;
+      setFontScale(isNaN(scale) ? 115 : scale);
     })();
 
     // Tab Switching

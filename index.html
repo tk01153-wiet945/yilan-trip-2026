@@ -44,7 +44,7 @@
       color: var(--text-main);
       line-height: 1.5;
       min-height: 100vh;
-      padding-bottom: 110px;
+      padding-bottom: 66px;
       background-image: 
         radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.15) 0px, transparent 50%),
         radial-gradient(at 100% 100%, rgba(2, 132, 199, 0.15) 0px, transparent 50%);
@@ -486,51 +486,42 @@
     /* Floating Action Bar at Bottom */
     .floating-bar {
       position: fixed;
-      bottom: 20px;
-      left: 16px;
-      right: 16px;
-      max-width: 568px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      max-width: 600px;
       margin: 0 auto;
-      background: rgba(15, 23, 42, 0.92);
+      background: rgba(15, 23, 42, 0.95);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 999px;
-      padding: 8px 12px;
+      border-bottom: none;
+      border-radius: 18px 18px 0 0;
+      padding: 8px 16px calc(8px + env(safe-area-inset-bottom, 0px));
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       box-shadow: var(--shadow-lg);
       z-index: 100;
     }
 
     .float-btn {
-      flex: 1;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
-      padding: 10px 14px;
+      padding: 7px 20px;
       border-radius: 999px;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 800;
       text-decoration: none;
       color: #ffffff;
       transition: all 0.2s;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .float-homestay {
       background: var(--primary-gradient);
       box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
-      margin-right: 8px;
-    }
-
-    .float-call {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-main);
-      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     /* Toast Notification */
@@ -1375,12 +1366,8 @@
   <!-- Bottom Floating Bar -->
   <div class="floating-bar">
     <a href="javascript:void(0)" onclick="openNav('宜蘭縣三星鄉行健一路一段106號')" class="float-btn float-homestay">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       <span class="i18n-zh">回民宿</span><span class="i18n-id">Ke Vila</span>
-    </a>
-    <a href="tel:0975264309" class="float-btn float-call">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <span class="i18n-zh">打給管家</span><span class="i18n-id">Telepon</span>
     </a>
   </div>
 

@@ -100,7 +100,7 @@
     /* Day Navigation Tabs */
     .nav-tabs-wrapper {
       position: sticky;
-      top: 98px;
+      top: var(--header-h, 98px);
       z-index: 90;
       background: var(--tab-bg);
       backdrop-filter: blur(16px);
@@ -511,11 +511,14 @@
       gap: 6px;
       padding: 10px 14px;
       border-radius: 999px;
-      font-size: 0.82rem;
+      font-size: 0.7rem;
       font-weight: 800;
       text-decoration: none;
       color: #ffffff;
       transition: all 0.2s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .float-homestay {
@@ -1373,11 +1376,11 @@
   <div class="floating-bar">
     <a href="javascript:void(0)" onclick="openNav('宜蘭縣三星鄉行健一路一段106號')" class="float-btn float-homestay">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      <span class="i18n-zh">導航回民宿</span><span class="i18n-id">Navigasi ke Vila</span>
+      <span class="i18n-zh">回民宿</span><span class="i18n-id">Ke Vila</span>
     </a>
     <a href="tel:0975264309" class="float-btn float-call">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <span class="i18n-zh">撥給民宿管家</span><span class="i18n-id">Telepon Pengelola</span>
+      <span class="i18n-zh">打給管家</span><span class="i18n-id">Telepon</span>
     </a>
   </div>
 
@@ -1389,7 +1392,19 @@
         btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
       });
       try { localStorage.setItem('trip-lang', lang); } catch (e) {}
+      requestAnimationFrame(syncHeaderHeight);
     }
+
+    // Keep the sticky day-tabs bar aligned right under the header,
+    // whose height changes with title length / language / font scale.
+    function syncHeaderHeight() {
+      const header = document.querySelector('.app-header');
+      if (header) {
+        document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
+      }
+    }
+    window.addEventListener('resize', () => requestAnimationFrame(syncHeaderHeight));
+    window.addEventListener('load', () => requestAnimationFrame(syncHeaderHeight));
 
     (function initLang() {
       let saved = null;
@@ -1402,6 +1417,7 @@
       scale = Math.max(85, Math.min(170, scale));
       document.documentElement.style.fontSize = scale + '%';
       try { localStorage.setItem('trip-font-scale', String(scale)); } catch (e) {}
+      requestAnimationFrame(syncHeaderHeight);
     }
 
     function adjustFontSize(delta) {
